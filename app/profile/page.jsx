@@ -1,61 +1,46 @@
-"use client";
-
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+"use client"
 
 import Profile from "@components/Profile";
+import { useState } from "react";
 
-const MyProfile = () => {
-  const router = useRouter();
-  const { data: session } = useSession();
+const MyProfilePage = ({ myPosts, handleEdit, handleDelete }) => {
+  const [userDesc, setUserDesc] = useState(""); // State variable to store user's bio description
+  const [userHobbies, setUserHobbies] = useState(""); // State variable to store user's hobbies
 
-  const [myPosts, setMyPosts] = useState([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${session?.user.id}/posts`);
-      const data = await response.json();
-
-      setMyPosts(data);
-    };
-
-    if (session?.user.id) fetchPosts();
-  }, [session?.user.id]);
-
-  const handleEdit = (post) => {
-    router.push(`/update-prompt?id=${post._id}`);
+  // Function to handle bio description change
+  const handleDescChange = (e) => {
+    setUserDesc(e.target.value);
   };
 
-  const handleDelete = async (post) => {
-    const hasConfirmed = confirm(
-      "Are you sure you want to delete this prompt?"
-    );
+  // Function to handle hobbies change
+  const handleHobbiesChange = (e) => {
+    setUserHobbies(e.target.value);
+  };
 
-    if (hasConfirmed) {
-      try {
-        await fetch(`/api/prompt/${post._id.toString()}`, {
-          method: "DELETE",
-        });
+  // Function to handle saving bio description
+  const handleSaveBio = (newDesc) => {
+    setUserDesc(newDesc);
+  };
 
-        const filteredPosts = myPosts.filter((item) => item._id !== post._id);
-
-        setMyPosts(filteredPosts);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+  // Function to handle saving hobbies
+  const handleSaveHobbies = (newHobbies) => {
+    setUserHobbies(newHobbies);
   };
 
   return (
-    <Profile
-      name='My'
-      desc='Welcome to your personalized profile page. Share your exceptional prompts and inspire others with the power of your imagination'
-      data={myPosts}
-      handleEdit={handleEdit}
-      handleDelete={handleDelete}
-    />
+    <div className="w-full max-w-full">
+      <Profile
+        name="My"
+        bio={userDesc} // Pass user's bio description as prop
+        hobbies={userHobbies} // Pass user's hobbies as prop
+        data={myPosts}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+        handleBioChange={handleSaveBio} // Pass function to save bio description
+        handleHobbiesChange={handleSaveHobbies} // Pass function to save hobbies
+      />
+    </div>
   );
 };
 
-export default MyProfile;
+export default MyProfilePage;

@@ -1,7 +1,5 @@
 "use client";
-
 import { useState, useEffect } from "react";
-
 import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
@@ -72,7 +70,7 @@ const Feed = () => {
       <form className='relative w-full flex-center'>
         <input
           type='text'
-          placeholder='Search for a tag or a username'
+          placeholder='Enter a tag (example: #Level1 #Jobs #ExamPrep #CFAmemes)'
           value={searchText}
           onChange={handleSearchChange}
           required

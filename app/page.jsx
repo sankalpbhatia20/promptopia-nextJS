@@ -4,14 +4,13 @@ const Home = () => {
   return (
     <section className="w-full flex-center flex-col">
         <h1 className="head_text text-center">
-            Discover & Share
-            <br className="max-md:hidden"/>
+              CFA
             <span className="orange_gradient text-center">
-                AI Powered Prompts
+              Connect
             </span>
         </h1>
         <p className="text-center desc">
-            Promptopia is a place to share and discover AI prompts
+          Volatile Returns? Maybe. Rock Solid Community. Absolutely!
         </p>
 
         <Feed />

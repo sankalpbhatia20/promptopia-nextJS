@@ -129,10 +129,17 @@
 /* Form Component */
 .form_textarea {
   @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+  overflow-wrap: break-word; /* Ensure text wraps within the textarea */
+}
+
+.form_textarea_short {
+  @apply w-full flex rounded-lg h-[50px] mt-2 p-3 text-sm text-gray-500 outline-0;
+  overflow-wrap: break-word; /* Ensure text wraps within the textarea */
 }
 
 .form_input {
   @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
+  overflow-wrap: break-word; /* Ensure text wraps within the textarea */
 }
 
 /* Nav Component */
@@ -167,4 +174,244 @@
 
 .flex-between {
   @apply flex justify-between items-center;
+}
+
+.amenity-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFE0B2;
+  color: #333;
+  border-radius: 5px;
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+}
+
+.carousel::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  margin-right: 10px; /* Adjust spacing between images */
+}
+
+.images-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Adjust the gap between images */
+  margin-top: 10px;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.image-wrapper:hover {
+  opacity: 0.8; /* Adjust the opacity when hovering over an image */
+}
+
+.expanded-image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+.expanded-image {
+  max-width: 90%; /* Limit the maximum width of the expanded image */
+  max-height: 90%; /* Limit the maximum height of the expanded image */
+  border-radius: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.like_btn {
+  @apply rounded-md border border-black bg-white py-1 px-4 text-black font-medium transition-all hover:bg-orange-300 hover:text-black text-center text-sm font-satoshi flex items-center justify-center;
+}
+
+/* CSS for the Profile component */
+
+.bio-section {
+  margin-bottom: 20px;
+}
+
+.hobbies-section {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form_textarea_short,
+.form_input_short {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #4a90e2;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #357ae8;
+}
+
+
+/* CSS for the Delete Button */
+
+.del-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.del-svgIcon {
+  width: 12px;
+  transition-duration: .3s;
+}
+
+.del-svgIcon path {
+  fill: white;
+}
+
+.del-btn:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: .3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+}
+
+.del-btn:hover .svgIcon {
+  width: 50px;
+  transition-duration: .3s;
+  transform: translateY(60%);
+}
+
+.del-btn::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: .3s;
+  font-size: 2px;
+}
+
+.del-btn:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
+}
+
+
+/* Submit Button */
+.submit-btn {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 1.5rem;
+  background: #ff6003;
+  background-size: 400%;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-btn:hover::before {
+  transform: scaleX(1);
+}
+
+.submit-btn-content {
+  position: relative;
+  z-index: 1;
+}
+
+.submit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(
+    82.3deg,
+    rgba(255, 204, 128, 1) 10.8%,
+    rgba(255, 159, 0, 1) 94.3%
+  );
+  transition: all 0.475s;
+}
+
+/* Phone number Input CSS */
+.phone-number-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.phone-number-input:focus {
+  outline: none;
+  border-color: #007bff; /* Change color on focus */
+}
+
+.section{
+  width: 50%;
 }

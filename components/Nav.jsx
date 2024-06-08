@@ -25,25 +25,25 @@ const Nav = () => {
 
 
     return (
-        <nav className="flex-between w-full mb-16 pt-3">
-            <Link href="/" className="flex gap-2 flex-center">
+        <nav className="flex justify-between w-full mb-16 pt-3">
+            <Link href="/" className="flex gap-2 items-center">
                 <Image
                     src="/assets/images/logo.svg" 
-                    alt="promptopia"
+                    alt="flathunt"
                     width={30}
                     height={30}
                     className="object-contain"/>
                 <p className="logo_text">
-                    Promptopia
+                    CFAConnect
                 </p>
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="sm:flex hidden">
+            <div className="hidden sm:flex gap-3 md:gap-5">
                 {session?.user ? (
-                    <div className="flex gap-3 md:gap-5">
-                        <Link href="/create-prompt" type="submit" className="px-5 py-2 text-sm bg-primary-orange rounded-full text-white">
-                            Create Post
+                    <div className="flex items-center gap-3">
+                        <Link href="/create-prompt" className="px-5 py-2 text-sm bg-primary-orange rounded-full text-white">
+                            Ask a Question
                         </Link>
 
                         <button type="button" onClick={signOut} className="outline_btn">
@@ -61,7 +61,7 @@ const Nav = () => {
                 ):(
                     <>
                         {providers && Object.values(providers).map((provider) => (
-                            <button type="button" key={provider.name} onClick={() => signIn(provider.id)} className="black_btn">
+                            <button key={provider.name} onClick={() => signIn(provider.id)} className="black_btn">
                                 Sign In
                             </button>
                         ))}
@@ -70,18 +70,16 @@ const Nav = () => {
             </div>
 
             {/* Mobile Navigation */}
-            <div className="sm:hidden flex relative">
+            <div className="flex sm:hidden relative">
                 {session?.user ? (
-                    <div className="flex">
+                    <div className="flex items-center">
                         <Image 
                         src={session?.user.image}
                         width={37}
                         height={37}
-                        className="rounded-full"
+                        className="rounded-full cursor-pointer"
                         alt="profile"
-                        onClick={() => setToggleDropDown(
-                            (prev) => !prev
-                        )}
+                        onClick={() => setToggleDropDown(prev => !prev)}
                         />
                         {toggleDropDown && (
                             <div className="dropdown">
@@ -112,8 +110,8 @@ const Nav = () => {
                     </div>
                 ) : (
                     <>
-                      {providers && Object.values(providers).map((provider) => (
-                            <button type="button" key={provider.name} onClick={() => signIn(provider.id)} className="black_btn">
+                        {providers && Object.values(providers).map((provider) => (
+                            <button key={provider.name} onClick={() => signIn(provider.id)} className="black_btn">
                                 Sign In
                             </button>
                         ))}  
@@ -124,4 +122,4 @@ const Nav = () => {
     )
 }
 
-export default Nav
+export default Nav;
